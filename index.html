@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Draggabledrawers by kedzie</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Draggabledrawers</h1>
+        <p>Multidirectional Sliding Drawers for Android</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/kedzie/DraggableDrawers" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/kedzie/DraggableDrawers/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/kedzie/DraggableDrawers/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>
+<a name="draggabledrawers" class="anchor" href="#draggabledrawers"><span class="octicon octicon-link"></span></a>DraggableDrawers</h1>
+
+<p>Drag drawers with handles in any direction.</p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Drawers must be enclosed in a DragLayout.  Each drawer is defined with a content view, an optional handle, and choice of direction.  For example:</p>
+
+<div class="highlight"><pre>
+
+<span class="c">&lt;!-- A DrawerLayout is intended to be used as the top-level content view using match_parent for both width and height to consume the full space available. --&gt;</span>
+<span class="nt">&lt;com.kedzie.drawer.DragLayout</span>
+        <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+        <span class="na">xmlns:kedzie=</span><span class="s">"http://schemas.android.com/apk/res-auto"</span>
+        <span class="na">android:id=</span><span class="s">"@+id/drawer_layout"</span>
+        <span class="na">kedzie:scrim_color=</span><span class="s">"@color/drawer_scrim"</span>
+        <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+        <span class="na">android:layout_height=</span><span class="s">"match_parent"</span><span class="nt">&gt;</span>
+
+
+    <span class="nt">&lt;com.kedzie.drawer.DraggedDrawer</span>
+            <span class="na">android:id=</span><span class="s">"@+id/left"</span>
+            <span class="na">android:layout_width=</span><span class="s">"400dp"</span>
+            <span class="na">android:layout_height=</span><span class="s">"400dp"</span>
+            <span class="na">kedzie:handle=</span><span class="s">"@+id/left_handle"</span>
+            <span class="na">kedzie:content=</span><span class="s">"@+id/left_content"</span>
+            <span class="na">kedzie:type=</span><span class="s">"left"</span>
+            <span class="na">kedzie:shadow=</span><span class="s">"@drawable/shadow_grad_left"</span>
+            <span class="na">android:layout_marginTop=</span><span class="s">"24dp"</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;RelativeLayout</span>
+                <span class="na">android:id=</span><span class="s">"@id/left_content"</span>
+                <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+                <span class="na">android:layout_height=</span><span class="s">"match_parent"</span>
+                <span class="na">android:background=</span><span class="s">"#FF0000FF"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;TextView</span> <span class="na">android:text=</span><span class="s">"LEFT"</span>
+                      <span class="na">android:layout_centerInParent=</span><span class="s">"true"</span>
+                      <span class="na">android:layout_width=</span><span class="s">"wrap_content"</span>
+                      <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/RelativeLayout&gt;</span>
+
+        <span class="nt">&lt;ImageView</span> <span class="na">android:id=</span><span class="s">"@id/left_handle"</span>
+                   <span class="na">android:src=</span><span class="s">"@drawable/drawer_handle_left_closed"</span>
+                   <span class="na">android:layout_gravity=</span><span class="s">"top"</span>
+                   <span class="na">android:layout_marginTop=</span><span class="s">"14dp"</span>
+                   <span class="na">android:layout_width=</span><span class="s">"wrap_content"</span>
+                   <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span><span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;/com.kedzie.drawer.DraggedDrawer&gt;</span>
+
+    <span class="nt">&lt;com.kedzie.drawer.DraggedDrawer</span>
+            <span class="na">android:id=</span><span class="s">"@+id/bottom"</span>
+            <span class="na">android:layout_width=</span><span class="s">"400dp"</span>
+            <span class="na">android:layout_height=</span><span class="s">"250dp"</span>
+            <span class="na">kedzie:handle=</span><span class="s">"@+id/bottom_handle"</span>
+            <span class="na">kedzie:content=</span><span class="s">"@+id/bottom_content"</span>
+            <span class="na">kedzie:type=</span><span class="s">"bottom"</span>
+            <span class="na">kedzie:shadow=</span><span class="s">"@drawable/shadow_grad_bottom"</span>
+            <span class="na">android:layout_alignParentBottom=</span><span class="s">"true"</span>
+            <span class="na">android:layout_alignParentRight=</span><span class="s">"true"</span>
+            <span class="na">android:layout_marginRight=</span><span class="s">"18dp"</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;RelativeLayout</span>
+                <span class="na">android:id=</span><span class="s">"@id/bottom_content"</span>
+                <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+                <span class="na">android:layout_height=</span><span class="s">"match_parent"</span>
+                <span class="na">android:background=</span><span class="s">"#FF0000FF"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;TextView</span> <span class="na">android:text=</span><span class="s">"BOTTOM"</span>
+                      <span class="na">android:layout_centerInParent=</span><span class="s">"true"</span>
+                      <span class="na">android:layout_width=</span><span class="s">"wrap_content"</span>
+                      <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/RelativeLayout&gt;</span>
+
+        <span class="nt">&lt;ImageView</span> <span class="na">android:id=</span><span class="s">"@id/bottom_handle"</span>
+                   <span class="na">android:background=</span><span class="s">"@drawable/handle"</span>
+                   <span class="na">android:layout_width=</span><span class="s">"100dp"</span>
+                   <span class="na">android:layout_height=</span><span class="s">"24dp"</span>
+                   <span class="na">android:layout_gravity=</span><span class="s">"center"</span><span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;/com.kedzie.drawer.DraggedDrawer&gt;</span>
+
+    <span class="nt">&lt;com.kedzie.drawer.DraggedDrawer</span>
+            <span class="na">android:id=</span><span class="s">"@+id/top"</span>
+            <span class="na">android:layout_width=</span><span class="s">"300dp"</span>
+            <span class="na">android:layout_height=</span><span class="s">"300dp"</span>
+            <span class="na">kedzie:handle=</span><span class="s">"@+id/top_handle"</span>
+            <span class="na">kedzie:content=</span><span class="s">"@+id/top_content"</span>
+            <span class="na">kedzie:type=</span><span class="s">"top"</span>
+            <span class="na">kedzie:shadow=</span><span class="s">"@drawable/shadow_grad_top"</span>
+            <span class="na">android:layout_alignParentTop=</span><span class="s">"true"</span>
+            <span class="na">android:layout_alignParentRight=</span><span class="s">"true"</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;RelativeLayout</span>
+                <span class="na">android:id=</span><span class="s">"@id/top_content"</span>
+                <span class="na">android:layout_width=</span><span class="s">"match_parent"</span>
+                <span class="na">android:layout_height=</span><span class="s">"match_parent"</span>
+                <span class="na">android:background=</span><span class="s">"#FF0000FF"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;TextView</span> <span class="na">android:text=</span><span class="s">"TOP"</span>
+                      <span class="na">android:layout_centerInParent=</span><span class="s">"true"</span>
+                      <span class="na">android:layout_width=</span><span class="s">"wrap_content"</span>
+                      <span class="na">android:layout_height=</span><span class="s">"wrap_content"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/RelativeLayout&gt;</span>
+
+        <span class="nt">&lt;ImageView</span> <span class="na">android:id=</span><span class="s">"@id/top_handle"</span>
+                   <span class="na">android:background=</span><span class="s">"@drawable/handle"</span>
+                   <span class="na">android:layout_gravity=</span><span class="s">"center"</span>
+                   <span class="na">android:layout_width=</span><span class="s">"200dp"</span>
+                   <span class="na">android:layout_height=</span><span class="s">"30dp"</span><span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;/com.kedzie.drawer.DraggedDrawer&gt;</span>
+
+<span class="nt">&lt;/com.kedzie.drawer.DragLayout&gt;</span>
+
+</pre></div>
+
+<p>Look at the sample application for a complete example.</p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/kedzie">kedzie</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
