@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="Date-Revision-yyyymmdd" content="20130630" />
     <meta http-equiv="Content-Language" content="en" />
-    <title>DraggableDrawers for Android - </title>
+    <title>DraggableDrawers for Android - Continuous Integration</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.3.0.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -74,10 +74,12 @@
                 <ul class="nav nav-list">
                     <li class="nav-header">Overview</li>
                                 
-      <li class="active">
+      <li>
     
-            <a href="#"><i class="none"></i>Introduction</a>
-          </li>
+                          <a href="index.html" title="Introduction">
+          <i class="none"></i>
+        Introduction</a>
+            </li>
                               <li class="nav-header">Project Documentation</li>
                                                                                                                                                                                                                                                                                                   
       <li>
@@ -101,12 +103,10 @@
         Source Repository</a>
             </li>
                       
-      <li>
+      <li class="active">
     
-                          <a href="integration.html" title="Continuous Integration">
-          <i class="none"></i>
-        Continuous Integration</a>
-            </li>
+            <a href="#"><i class="none"></i>Continuous Integration</a>
+          </li>
                       
       <li>
     
@@ -136,10 +136,12 @@
         Mailing Lists</a>
             </li>
                       
-      <li class="active">
+      <li>
     
-            <a href="#"><i class="none"></i>About</a>
-          </li>
+                          <a href="index.html" title="About">
+          <i class="none"></i>
+        About</a>
+            </li>
                       
       <li>
     
@@ -227,118 +229,9 @@
                 
         <div id="bodyColumn"  class="span9" >
                                   
-            <h1>DraggableDrawers</h1>
-<p>Drag drawers with handles in any direction.</p>
-<p><img src="screenshot.jpg" alt="DraggableDrawers Screenshot" /></p>
-<div class="section">
-<h2>Usage<a name="Usage"></a></h2>
-<p>Drawers must be enclosed in a DragLayout. Each drawer is defined with a content view, an optional handle, and choice of direction. For example:</p>
-
-<div class="source">
-<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-
-&lt;com.kedzie.drawer.DragLayout
-        xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-        xmlns:kedzie=&quot;http://schemas.android.com/apk/res-auto&quot;
-        android:id=&quot;@+id/drawer_layout&quot;
-        kedzie:scrim_color=&quot;@color/drawer_scrim&quot;
-        android:layout_width=&quot;match_parent&quot;
-        android:layout_height=&quot;match_parent&quot;&gt;
-
-    &lt;com.kedzie.drawer.DraggedDrawer
-            android:id=&quot;@+id/left&quot;
-            android:layout_width=&quot;400dp&quot;
-            android:layout_height=&quot;400dp&quot;
-            kedzie:handle=&quot;@+id/left_handle&quot;
-            kedzie:content=&quot;@+id/left_content&quot;
-            kedzie:type=&quot;left&quot;
-            kedzie:shadow=&quot;@drawable/shadow_grad_left&quot;
-            android:layout_marginTop=&quot;24dp&quot;&gt;
-
-        &lt;RelativeLayout
-                android:id=&quot;@id/left_content&quot;
-                android:layout_width=&quot;match_parent&quot;
-                android:layout_height=&quot;match_parent&quot;
-                android:background=&quot;#FF0000FF&quot;&gt;
-            &lt;TextView android:text=&quot;LEFT&quot;
-                      android:layout_centerInParent=&quot;true&quot;
-                      android:layout_width=&quot;wrap_content&quot;
-                      android:layout_height=&quot;wrap_content&quot;/&gt;
-        &lt;/RelativeLayout&gt;
-
-        &lt;ImageView android:id=&quot;@id/left_handle&quot;
-                   android:src=&quot;@drawable/drawer_handle_left_closed&quot;
-                   android:layout_gravity=&quot;top&quot;
-                   android:layout_marginTop=&quot;14dp&quot;
-                   android:layout_width=&quot;wrap_content&quot;
-                   android:layout_height=&quot;wrap_content&quot;/&gt;
-
-    &lt;/com.kedzie.drawer.DraggedDrawer&gt;
-
-    &lt;com.kedzie.drawer.DraggedDrawer
-            android:id=&quot;@+id/bottom&quot;
-            android:layout_width=&quot;400dp&quot;
-            android:layout_height=&quot;250dp&quot;
-            kedzie:handle=&quot;@+id/bottom_handle&quot;
-            kedzie:content=&quot;@+id/bottom_content&quot;
-            kedzie:type=&quot;bottom&quot;
-            kedzie:shadow=&quot;@drawable/shadow_grad_bottom&quot;
-            android:layout_alignParentBottom=&quot;true&quot;
-            android:layout_alignParentRight=&quot;true&quot;
-            android:layout_marginRight=&quot;18dp&quot;&gt;
-
-        &lt;RelativeLayout
-                android:id=&quot;@id/bottom_content&quot;
-                android:layout_width=&quot;match_parent&quot;
-                android:layout_height=&quot;match_parent&quot;
-                android:background=&quot;#FF0000FF&quot;&gt;
-            &lt;TextView android:text=&quot;BOTTOM&quot;
-                      android:layout_centerInParent=&quot;true&quot;
-                      android:layout_width=&quot;wrap_content&quot;
-                      android:layout_height=&quot;wrap_content&quot;/&gt;
-        &lt;/RelativeLayout&gt;
-
-        &lt;ImageView android:id=&quot;@id/bottom_handle&quot;
-                   android:background=&quot;@drawable/handle&quot;
-                   android:layout_width=&quot;100dp&quot;
-                   android:layout_height=&quot;24dp&quot;
-                   android:layout_gravity=&quot;center&quot;/&gt;
-
-    &lt;/com.kedzie.drawer.DraggedDrawer&gt;
-
-    &lt;com.kedzie.drawer.DraggedDrawer
-            android:id=&quot;@+id/top&quot;
-            android:layout_width=&quot;300dp&quot;
-            android:layout_height=&quot;300dp&quot;
-            kedzie:handle=&quot;@+id/top_handle&quot;
-            kedzie:content=&quot;@+id/top_content&quot;
-            kedzie:type=&quot;top&quot;
-            kedzie:shadow=&quot;@drawable/shadow_grad_top&quot;
-            android:layout_alignParentTop=&quot;true&quot;
-            android:layout_alignParentRight=&quot;true&quot;&gt;
-
-        &lt;RelativeLayout
-                android:id=&quot;@id/top_content&quot;
-                android:layout_width=&quot;match_parent&quot;
-                android:layout_height=&quot;match_parent&quot;
-                android:background=&quot;#FF0000FF&quot;&gt;
-            &lt;TextView android:text=&quot;TOP&quot;
-                      android:layout_centerInParent=&quot;true&quot;
-                      android:layout_width=&quot;wrap_content&quot;
-                      android:layout_height=&quot;wrap_content&quot;/&gt;
-        &lt;/RelativeLayout&gt;
-
-        &lt;ImageView android:id=&quot;@id/top_handle&quot;
-                   android:background=&quot;@drawable/handle&quot;
-                   android:layout_gravity=&quot;center&quot;
-                   android:layout_width=&quot;200dp&quot;
-                   android:layout_height=&quot;30dp&quot;/&gt;
-
-    &lt;/com.kedzie.drawer.DraggedDrawer&gt;
-
-&lt;/com.kedzie.drawer.DragLayout&gt;
-</pre></div>
-<p>Look at the sample application for a complete example.</p></div>
+            <div class="section">
+<h2>Continuous Integration<a name="Continuous_Integration"></a></h2>
+<p>No continuous integration management system is defined. Please check back at a later date.</p></div>
                   </div>
             </div>
           </div>
