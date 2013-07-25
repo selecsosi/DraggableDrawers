@@ -120,7 +120,7 @@ public class DragLayout extends RelativeLayout {
     public DragLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Drawer, 0, 0);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DrawerLayout, 0, 0);
         try {
             mScrimColor = a.getColor(R.styleable.DrawerLayout_scrim_color, DEFAULT_SCRIM_COLOR);
         } finally {
